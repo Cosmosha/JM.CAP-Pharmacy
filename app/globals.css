@@ -1,26 +1,85 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --jm-primary: #0b5d45;
+  --jm-secondary: #0f8766;
+  --jm-accent: #23a67f;
+  --jm-mint: #d8f3e8;
+  --jm-bg: #f8fcfa;
+  --jm-soft: #edf6f1;
+  --jm-text: #0f261f;
+  --jm-muted: #5a6f67;
+  --jm-border: #d4e5de;
+  --jm-footer: #083426;
+
+  --background: var(--jm-bg);
+  --foreground: var(--jm-text);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
+  text-rendering: optimizeLegibility;
+  background-image: radial-gradient(circle at 8% -8%, rgba(35, 166, 127, 0.08), transparent 36%),
+    radial-gradient(circle at 95% 0%, rgba(15, 135, 102, 0.08), transparent 34%);
+}
+
+.hero-grid {
+  background-image: linear-gradient(to right, rgba(16, 35, 29, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 35, 29, 0.03) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+.hero-glow {
+  background: radial-gradient(circle, rgba(15, 135, 102, 0.2), transparent 64%);
+}
+
+.hero-organic {
+  background: radial-gradient(circle, rgba(11, 93, 69, 0.15), transparent 66%);
+  filter: blur(12px);
+}
+
+.coming-soon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 24% 22%, rgba(216, 243, 232, 0.26), transparent 36%),
+    radial-gradient(circle at 78% 70%, rgba(153, 226, 198, 0.24), transparent 42%),
+    linear-gradient(120deg, rgba(8, 52, 38, 0.24), rgba(35, 166, 127, 0.16));
+  animation: drift 16s linear infinite;
+}
+
+@keyframes drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, 10px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+*:focus-visible {
+  outline: 2px solid rgba(14, 128, 96, 0.55);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
